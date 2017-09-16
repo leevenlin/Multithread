@@ -1,0 +1,30 @@
+﻿  stdafx.cpp
+  tcpclient.cpp
+  SerialPort.cpp
+  QT_IMPORT.cpp
+  multithread.cpp
+  Imshow.cpp
+  function.cpp
+  command.cpp
+  ADMultiple.cpp
+f:\溢油雷达\multithread\multithread_v1\multithread\multithread\multithread\admultiple.cpp(16): warning C4244: “参数”: 从“float”转换到“int”，可能丢失数据
+f:\溢油雷达\multithread\multithread_v1\multithread\multithread\multithread\admultiple.cpp(17): warning C4293: “<<”: Shift 计数为负或过大，其行为未定义
+f:\溢油雷达\multithread\multithread_v1\multithread\multithread\multithread\admultiple.cpp(17): warning C4554: “<<”: 检查运算符优先级可能存在的错误；使用圆括号阐明优先级
+f:\溢油雷达\multithread\multithread_v1\multithread\multithread\multithread\admultiple.cpp(99): warning C4244: “参数”: 从“unsigned __int64”转换到“unsigned int”，可能丢失数据
+f:\溢油雷达\multithread\multithread_v1\multithread\multithread\multithread\admultiple.cpp(125): warning C4244: “参数”: 从“unsigned __int64”转换到“unsigned int”，可能丢失数据
+f:\溢油雷达\multithread\multithread_v1\multithread\multithread\multithread\admultiple.cpp(69): warning C4101: “szFilePathName”: 未引用的局部变量
+f:\溢油雷达\multithread\multithread_v1\multithread\multithread\multithread\admultiple.cpp(167): warning C4244: “参数”: 从“float”转换到“int”，可能丢失数据
+f:\溢油雷达\multithread\multithread_v1\multithread\multithread\multithread\admultiple.cpp(168): warning C4293: “<<”: Shift 计数为负或过大，其行为未定义
+f:\溢油雷达\multithread\multithread_v1\multithread\multithread\multithread\admultiple.cpp(168): warning C4554: “<<”: 检查运算符优先级可能存在的错误；使用圆括号阐明优先级
+f:\溢油雷达\multithread\multithread_v1\multithread\multithread\multithread\admultiple.cpp(206): warning C4018: “<”: 有符号/无符号不匹配
+f:\溢油雷达\multithread\multithread_v1\multithread\multithread\multithread\admultiple.cpp(220): warning C4477: “printf_s”: 格式字符串“%d”需要类型“int”的参数，但可变参数 1 拥有了类型“__int64”
+  f:\溢油雷达\multithread\multithread_v1\multithread\multithread\multithread\admultiple.cpp(220): note: 请考虑在格式字符串中使用“%lld”
+  f:\溢油雷达\multithread\multithread_v1\multithread\multithread\multithread\admultiple.cpp(220): note: 请考虑在格式字符串中使用“%I64d”
+f:\溢油雷达\multithread\multithread_v1\multithread\multithread\multithread\admultiple.cpp(220): warning C4477: “printf_s”: 格式字符串“%d”需要类型“int”的参数，但可变参数 2 拥有了类型“__int64”
+  f:\溢油雷达\multithread\multithread_v1\multithread\multithread\multithread\admultiple.cpp(220): note: 请考虑在格式字符串中使用“%lld”
+  f:\溢油雷达\multithread\multithread_v1\multithread\multithread\multithread\admultiple.cpp(220): note: 请考虑在格式字符串中使用“%I64d”
+f:\溢油雷达\multithread\multithread_v1\multithread\multithread\multithread\admultiple.cpp(256): warning C4244: “=”: 从“double”转换到“int”，可能丢失数据
+  正在生成代码...
+f:\溢油雷达\multithread\multithread_v1\multithread\multithread\multithread\admultiple.cpp(154): warning C4715: “QT_FifoMultipleSetup”: 不是所有的控件路径都返回值
+  multithread.vcxproj -> F:\溢油雷达\multithread\multithread_V1\multithread\multithread\Debug\multithread.exe
+  multithread.vcxproj -> F:\溢油雷达\multithread\multithread_V1\multithread\multithread\Debug\multithread.pdb (Full PDB)
