@@ -80,7 +80,7 @@ int main()
 	//启动雷达
 
 	//设置主线程优先级
-	hMutex = CreateMutex(NULL, FALSE, "screen");
+	hMutex = CreateMutex(NULL, FALSE, _T("screen"));
 	HANDLE hPrimaryThread = GetCurrentThread();
 	SetThreadPriority(hPrimaryThread, THREAD_PRIORITY_NORMAL);
 	//创建采集线程

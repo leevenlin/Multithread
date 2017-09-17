@@ -1,4 +1,5 @@
 //include file from QT library
+#include "stdafx.h"
 #include "QT_IMPORT.h"
 #include "QTApi.h"
 #ifdef __cplusplus
