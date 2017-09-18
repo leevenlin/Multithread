@@ -65,58 +65,65 @@ DWORD WINAPI ShowThread(LPVOID lpParamter)
 
 DWORD WINAPI SaveThread(LPVOID lpParamter)
 {
-	
+	int i = 0;
+	while (i<100000) {
+		i++;
+		cout << i << endl;
+		Sleep(100);
+	};
 	return 0L;//表示返回的是long型的0
 }
 
 CSerialPort port;
 int main()
 {
-	totalDataBuf = (unsigned char*)malloc(sizeof(char)*TotalData);
+	//totalDataBuf = (unsigned char*)malloc(sizeof(char)*TotalData);
 
 	//打开串口
 
-	port.InitPort(1, 76800, 'Y');
+	//port.InitPort(1, 76800, 'Y');
 	//启动雷达
 
 	//设置主线程优先级
 	hMutex = CreateMutex(NULL, FALSE, _T("screen"));
 	HANDLE hPrimaryThread = GetCurrentThread();
 	SetThreadPriority(hPrimaryThread, THREAD_PRIORITY_NORMAL);
-	//创建采集线程
-	HANDLE hThread = CreateThread(NULL, 0, GatherThread, NULL, CREATE_SUSPENDED, NULL);
-	SetThreadPriority(hThread, THREAD_PRIORITY_NORMAL);
-	ResumeThread(hThread);
-	//創建接收線程
-	HANDLE hThread2 = CreateThread(NULL, 0, RecvThread, NULL, CREATE_SUSPENDED, NULL);
-	SetThreadPriority(hThread2, THREAD_PRIORITY_NORMAL);
-	ResumeThread(hThread2);
 	//创建显示线程
 	HANDLE hThread3 = CreateThread(NULL, 0, ShowThread, NULL, CREATE_SUSPENDED, NULL);
 	SetThreadPriority(hThread3, THREAD_PRIORITY_NORMAL);
 	ResumeThread(hThread3);
+	////创建采集线程
+	//HANDLE hThread = CreateThread(NULL, 0, GatherThread, NULL, CREATE_SUSPENDED, NULL);
+	//SetThreadPriority(hThread, THREAD_PRIORITY_NORMAL);
+	//ResumeThread(hThread);
+	////創建接收線程
+	//HANDLE hThread2 = CreateThread(NULL, 0, RecvThread, NULL, CREATE_SUSPENDED, NULL);
+	//SetThreadPriority(hThread2, THREAD_PRIORITY_NORMAL);
+	//ResumeThread(hThread2);
+
 	//图像存储线程
 	HANDLE hThread4 = CreateThread(NULL, 0, SaveThread, NULL, CREATE_SUSPENDED, NULL);
 	SetThreadPriority(hThread4, THREAD_PRIORITY_NORMAL);
 	ResumeThread(hThread4);
 	//关闭线程
-	CloseHandle(hThread);
-	CloseHandle(hThread2);
+//	CloseHandle(hThread);
+//	CloseHandle(hThread2);
 	CloseHandle(hThread3);
 	CloseHandle(hThread4);
 	//主线程的执行路径
-	//for (int i = 0; i < 10; i++)
-	//{
-	//	//请求获得一个互斥量锁
-	//	//WaitForMultipleObjects
-	//	WaitForSingleObject(hMutex, INFINITE);
-	//	cout << "Main Thread Display!" << endl;
-	//	//Sleep(100);
-	//	//释放互斥量锁
-	//	ReleaseMutex(hMutex);
-	//}
+	for (int i = 0; i < 100000; i++)
+	{
+		//请求获得一个互斥量锁
+		//WaitForMultipleObjects
+		WaitForSingleObject(hMutex, INFINITE);
+		cout << "Main Thread Display!" << endl;
+		Sleep(100);
+		//Sleep(100);
+		//释放互斥量锁
+		ReleaseMutex(hMutex);
+	}
 	////主线程入口
-
+	
 	////////
 	system("pause");
 	return 0;
