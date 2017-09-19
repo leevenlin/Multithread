@@ -11,26 +11,26 @@ char UDPRecv[UDP_SIZE] = { 0 };
 time_to_char ClientTime = { 0 };
 enum  num_or_str tmp;
 
-char selfcheck = 0;
-char control=0;
-char shortp = 0;
-char record=0;
-char playbacktime[8] = { 0 };
-char playbackcontrol = 0;
-char range = 0;
-char show[4] = { 0 };
-char thresh = 0;
-char gain = 0;
-char contrast = 0;
-char turns = 0;
-char rate = 0;
-char gear = 0;
-char recordrange[2] = { 0 };
-char recordsector[4] = { 0 };
-char saveaddr[128] = { 0 };
-char automode = 0;
-char halfauto = 0;
-char handle[1000] = { 0 };
+uchar selfcheck = 0;
+uchar control=0;
+uchar shortp = 0;
+uchar record=0;
+uchar playbacktime[8] = { 0 };
+uchar playbackcontrol = 0;
+uchar range = 0;
+uchar show[4] = { 0 };
+uchar thresh = 0;
+uchar gain = 0;
+uchar contrast = 0;
+uchar turns = 0;
+uchar rate = 0;
+uchar gear = 0;
+uchar recordrange[2] = { 0 };
+uchar recordsector[4] = { 0 };
+uchar saveaddr[128] = { 0 };
+uchar automode = 0;
+uchar semiauto[257] = { 0 };
+uchar handle[0xffff] = { 0 };
 
 UserData Client[]=
 {//                                        
@@ -51,7 +51,7 @@ UserData Client[]=
 	{ 0x34,		 recordsector,	   RecordSector		},
 	{ 0x35,		 saveaddr,		   SaveAddr			},
 	{ 0x41,		 &automode,		   Auto				},
-	{ 0x42,		 &halfauto,		   HalfAuto			},
+	{ 0x42,		 semiauto,		   HalfAuto			},
 	{ 0x43,		 handle,		   Handle			},
 
 };
@@ -61,7 +61,7 @@ void GetData(char Recv[TCP_SIZE])
 	UserData temp;
 	int_to_char lenth;
 	int_to_char Msg_Hder;
-	char id_num;
+	uchar id_num;
 	memcpy(&Msg_Hder, &Recv[0], 4 * sizeof(uchar));  /////提取报文头
 	if (Msg_Hder.int_num != MSG_Hder)
 	{

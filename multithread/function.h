@@ -1,11 +1,12 @@
-
+#pragma once
 
 #ifndef FUNCTION_H
 #define FUNCTION_H
 
+#include "command.h"
 void Selfcheck(void);
 
-extern char control;
+extern uchar control;
 void Control(void);
 
 void ShortP(void);
@@ -14,17 +15,17 @@ void MidP(void);
 
 void Pause(void);
 
-extern char record;
+extern uchar record;
 void Record(void);
 
 void Playback(void);
 
-extern char playbackcontrol;
+extern uchar playbackcontrol;
 void PlaybackControl(void);
 
 void PlaybackStop(void);
 
-extern char range;
+extern uchar range;
 void Range(void);
 
 void Show(void);
