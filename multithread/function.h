@@ -5,20 +5,26 @@
 
 void Selfcheck(void);
 
+extern char control;
+void Control(void);
+
 void ShortP(void);
 
 void MidP(void);
 
 void Pause(void);
 
+extern char record;
 void Record(void);
 
 void Playback(void);
 
-void PlaybackPause(void);
+extern char playbackcontrol;
+void PlaybackControl(void);
 
 void PlaybackStop(void);
 
+extern char range;
 void Range(void);
 
 void Show(void);

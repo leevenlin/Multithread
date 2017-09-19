@@ -1,10 +1,6 @@
-﻿  command.cpp
+﻿  Imshow.cpp
+f:\溢油雷达\multithread\multithread_v1\multithread\multithread\multithread\imshow.cpp(17): error C2070: “UserData []”: 非法的 sizeof 操作数
   正在生成代码...
   正在编译...
-  tcpclient.cpp
-f:\溢油雷达\multithread\multithread_v1\multithread\multithread\multithread\tcpclient.cpp(42): warning C4477: “printf”: 格式字符串“%d”需要类型“int”的参数，但可变参数 1 拥有了类型“std::size_t”
-  f:\溢油雷达\multithread\multithread_v1\multithread\multithread\multithread\tcpclient.cpp(42): note: 请考虑在格式字符串中使用“%zd”
   multithread.cpp
   正在生成代码...
-  multithread.vcxproj -> F:\溢油雷达\multithread\multithread_V1\multithread\multithread\x64\Debug\multithread.exe
-  multithread.vcxproj -> F:\溢油雷达\multithread\multithread_V1\multithread\multithread\x64\Debug\multithread.pdb (Full PDB)

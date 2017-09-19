@@ -4,13 +4,40 @@
 
 #include "function.h"
 #include "SerialPort.h"
-
+#include "command.h"	
 //sperrryÀ×´ï¿ØÖÆÖ¸Áî
 unsigned char sperry_1[4] = { 0x00,0x10,0x65,0x75 };
 unsigned char sperry_2[5] = { 0x00,0x20,0x62,0x76,0x78 };
 
 extern CSerialPort port;
 void Selfcheck(void)
+{
+
+}
+void Control(void)
+{
+	switch (control)
+	{
+	case CONTROL::PAUSE:
+		Pause();
+		break;
+	case CONTROL::SHORTP:
+		ShortP();
+		break;
+	case CONTROL::MIDP:
+		MidP();
+		break;
+	default:
+		break;
+	}
+}
+
+void StartRecord(void)
+{
+
+}
+
+void StopRecord(void)
 {
 
 }
@@ -50,13 +77,25 @@ void Pause(void)
 
 void Record(void)
 {
-
+	switch (record)
+	{
+	case RECORD::START:
+		StartRecord();
+		break;
+	case RECORD::STOP:
+		StopRecord();
+		break;
+	default:
+		break;
+	}
 }
 
 void Playback(void)
 {
 
 }
+
+
 
 void PlaybackPause(void)
 {
@@ -68,9 +107,34 @@ void PlaybackStop(void)
 
 }
 
-void Range(void)
+void PlaybackKeepon(void)
 {
 
+}
+
+void PlaybackControl(void)
+{
+	switch (playbackcontrol)
+	{
+	case PLAYBACK::KEEPON:
+		PlaybackKeepon();
+		break;
+	case PLAYBACK::PAUSEPLAY:
+		PlaybackPause();
+		break;
+	case PLAYBACK::STOPPLAY:
+		PlaybackStop();
+		break;
+	default:
+		break;
+	}
+}
+
+
+void Range(void)
+{
+	float range_num[11] = { 0.25,0.5,0.75,1,1.5,2,2.5,3,4,5,6 };
+	float range_NM = range_num[range-1];
 }
 
 void Show(void)

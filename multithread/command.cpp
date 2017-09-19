@@ -11,7 +11,12 @@ char UDPRecv[UDP_SIZE] = { 0 };
 time_to_char ClientTime = { 0 };
 enum  num_or_str tmp;
 
+char selfcheck = 0;
+char control=0;
+char shortp = 0;
+char record=0;
 char playbacktime[8] = { 0 };
+char playbackcontrol = 0;
 char range = 0;
 char show[4] = { 0 };
 char thresh = 0;
@@ -22,34 +27,32 @@ char rate = 0;
 char gear = 0;
 char recordrange[2] = { 0 };
 char recordsector[4] = { 0 };
-char saveaddr[100] = { 0 };
+char saveaddr[128] = { 0 };
+char automode = 0;
 char halfauto = 0;
 char handle[1000] = { 0 };
 
 UserData Client[]=
 {//                                        
-	{ 0x01,		 NULL,			 Selfcheck			 },
-	{ 0x02,		 NULL,			 ShortP				 },
-	{ 0x03,		 NULL,			 MidP				},
-	{ 0x04,		 NULL,			 Pause				},
-	{ 0x05,		 NULL,			 Record				},
-	{ 0x06,		 playbacktime,	 Playback			 },
-	{ 0x07,		 NULL,			 PlaybackPause		},
-	{ 0x08,		 NULL,			 PlaybackStop		},
-	{ 0x11,		 &range,		 Range				},
-	{ 0x12,		 show,			 Show				},
-	{ 0x21,		 &thresh,		 Thresh				},
-	{ 0x22,		 &gain,			 Gain				},
-	{ 0x23,		 &contrast,		 Contrast			},
-	{ 0x24,		 &turns,		 Turns				},
-	{ 0x31,		 &rate,			 Rate				},
-	{ 0x32,		 &gear,			 Gear				},
-	{ 0x33,		 recordrange,  	 RecordRange		},
-	{ 0x34,		 recordsector,	 RecordSector		},
-	{ 0x35,		 saveaddr,		 SaveAddr			},
-	{ 0x41,		 NULL,			 Auto				},
-	{ 0x42,		 &halfauto,		 HalfAuto			},
-	{ 0x43,		 handle,		 Handle				},
+	{ 0x01,		 &selfcheck,	   Selfcheck    	},
+	{ 0x02,		 &control,		   Control		    },
+	{ 0x03,		 &record,		   Record			},
+	{ 0x04,		 playbacktime,	   Playback			},
+	{ 0x05,		 &playbackcontrol, PlaybackControl	},
+	{ 0x11,		 &range,	   	   Range			},
+	{ 0x12,		 show,			   Show				},
+	{ 0x21,		 &thresh,		   Thresh			},
+	{ 0x22,		 &gain,			   Gain				},
+	{ 0x23,		 &contrast,		   Contrast			},
+	{ 0x24,		 &turns,		   Turns			},
+	{ 0x31,		 &rate,			   Rate				},
+	{ 0x32,		 &gear,			   Gear				},
+	{ 0x33,		 recordrange,  	   RecordRange		},
+	{ 0x34,		 recordsector,	   RecordSector		},
+	{ 0x35,		 saveaddr,		   SaveAddr			},
+	{ 0x41,		 &automode,		   Auto				},
+	{ 0x42,		 &halfauto,		   HalfAuto			},
+	{ 0x43,		 handle,		   Handle			},
 
 };
 
