@@ -2,19 +2,22 @@
 //
 
 #include "stdafx.h"
+
+#include <iostream>
+
 #include "conio.h"
 #include "windows.h"
 #include "winsock.h"
 #include "command.h"
 #pragma comment(lib,"ws2_32.lib")
 
-extern void GetData(char Recv[TCP_SIZE]);
+extern void GetData(char Recv[]);
 
-
+SOCKET sockclient;
 void TCPClient()
 {
 	//创建socket
-	SOCKET sockclient = socket(AF_INET,SOCK_STREAM,IPPROTO_TCP);
+	sockclient = socket(AF_INET, SOCK_STREAM, IPPROTO_TCP);
 	if(INVALID_SOCKET == sockclient)
 	{ 
 		return;
@@ -29,6 +32,7 @@ void TCPClient()
 
 	//向服务器发出连接请求，当然我们也可以通过connet函数的返回值判断到底有无连接成功。
 	int iRetVal = connect(sockclient,(struct sockaddr*)&addr,sizeof(addr));
+	printf("server connect error!");
 	if(SOCKET_ERROR == iRetVal)
 	{
 		printf("服务器连接失败！");
@@ -76,6 +80,7 @@ void UDPClient()
 	while (1)
 	{
 		recvfrom(sockclient, UDPRecv, UDP_SIZE, 0, (struct sockaddr*)&svraddr, &len);
+		UDPData(UDPRecv);
 		printf("%s \n", UDPRecv);
 		Sleep(100);
 	}
@@ -98,3 +103,5 @@ void UDPClient()
 //
 //	return 0;
 //}
+
+

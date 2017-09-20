@@ -5,11 +5,14 @@
 #include <windows.h>
 #include "command.h"
 #include "Imshow.h"
+#include <opencv2\opencv.hpp>
 
 #include "math.h"
 #include "ADSample.h"
 #include <queue>
 #include "SerialPort.h"
+
+using namespace cv;
 using namespace std;
 
 int TotalData = 512 << 20;
@@ -48,17 +51,23 @@ DWORD WINAPI GatherThread(LPVOID lpParamter)
 DWORD WINAPI RecvThread(LPVOID lpParamter)
 {
 	//初始化socket库
+	cout << "TCP" <<sizeof(OilArea2)<< endl;
 	WSADATA wsa = { 0 };
 	WSAStartup(MAKEWORD(2, 2), &wsa);
 	//tcp客户端
 	TCPClient();
 	//UDPClient();
 	//清理套接字资源
+	cout << "TCP end" << endl;
 	WSACleanup();
 	return 0L;//表示返回的是long型的0
 }
+extern  Mat ShowImg;
 DWORD WINAPI ShowThread(LPVOID lpParamter)
 {
+	cout << "imshow!" << endl;
+	//Mat tmp_row = ShowImg.row(0).clone();
+	//cout << sizeof(tmp_row) << endl;
 	ImgShow();
 	return 0L;//表示返回的是long型的0
 }
@@ -68,7 +77,7 @@ DWORD WINAPI SaveThread(LPVOID lpParamter)
 	int i = 0;
 	while (i<100000) {
 		i++;
-		cout << i << endl;
+		//cout << i << endl;
 		Sleep(100);
 	};
 	return 0L;//表示返回的是long型的0
@@ -86,28 +95,22 @@ int main()
 
 	//设置主线程优先级
 	hMutex = CreateMutex(NULL, FALSE, _T("screen"));
-	HANDLE hPrimaryThread = GetCurrentThread();
-	SetThreadPriority(hPrimaryThread, THREAD_PRIORITY_NORMAL);
+	//HANDLE hPrimaryThread = GetCurrentThread();
+	//SetThreadPriority(hPrimaryThread, THREAD_PRIORITY_NORMAL);
 	//创建显示线程
-	HANDLE hThread3 = CreateThread(NULL, 0, ShowThread, NULL, CREATE_SUSPENDED, NULL);
-	SetThreadPriority(hThread3, THREAD_PRIORITY_NORMAL);
-	ResumeThread(hThread3);
+	HANDLE hThread3 = CreateThread(NULL, 0, ShowThread, NULL, 0, NULL);
+
 	////创建采集线程
 	//HANDLE hThread = CreateThread(NULL, 0, GatherThread, NULL, CREATE_SUSPENDED, NULL);
 	//SetThreadPriority(hThread, THREAD_PRIORITY_NORMAL);
 	//ResumeThread(hThread);
 	////創建接收線程
-	//HANDLE hThread2 = CreateThread(NULL, 0, RecvThread, NULL, CREATE_SUSPENDED, NULL);
-	//SetThreadPriority(hThread2, THREAD_PRIORITY_NORMAL);
-	//ResumeThread(hThread2);
-
+	HANDLE hThread2 = CreateThread(NULL, 0, RecvThread, NULL, 0, NULL);
 	//图像存储线程
-	HANDLE hThread4 = CreateThread(NULL, 0, SaveThread, NULL, CREATE_SUSPENDED, NULL);
-	SetThreadPriority(hThread4, THREAD_PRIORITY_NORMAL);
-	ResumeThread(hThread4);
+	HANDLE hThread4 = CreateThread(NULL, 0, SaveThread, NULL, 0, NULL);
 	//关闭线程
 //	CloseHandle(hThread);
-//	CloseHandle(hThread2);
+	CloseHandle(hThread2);
 	CloseHandle(hThread3);
 	CloseHandle(hThread4);
 	//主线程的执行路径
@@ -116,7 +119,7 @@ int main()
 		//请求获得一个互斥量锁
 		//WaitForMultipleObjects
 		WaitForSingleObject(hMutex, INFINITE);
-		cout << "Main Thread Display!" << endl;
+		//cout << "Main Thread Display!" << endl;
 		Sleep(100);
 		//Sleep(100);
 		//释放互斥量锁
